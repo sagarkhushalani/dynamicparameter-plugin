@@ -3,7 +3,6 @@ package com.seitenbau.jenkins.plugins.dynamicparameter.config;
 import hudson.Extension;
 import hudson.Util;
 import hudson.model.ManagementLink;
-import hudson.model.Hudson;
 import hudson.security.Permission;
 
 import java.io.File;
@@ -11,6 +10,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+
+import jenkins.model.Jenkins;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.lang.ArrayUtils;
@@ -224,12 +225,12 @@ public class DynamicParameterManagement extends ManagementLink
 
   private static void checkReadPermission()
   {
-    Hudson.getInstance().checkPermission(Permission.READ);
+    Jenkins.getInstanceOrNull().checkPermission(Permission.READ);
   }
 
   private static void checkWritePermission()
   {
-    Hudson.getInstance().checkPermission(Permission.CONFIGURE);
+    Jenkins.getInstanceOrNull().checkPermission(Permission.CONFIGURE);
   }
 
   private static HttpResponse redirectToIndex()

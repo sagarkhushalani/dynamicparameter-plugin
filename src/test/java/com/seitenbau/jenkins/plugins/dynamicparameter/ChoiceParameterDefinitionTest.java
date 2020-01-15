@@ -78,7 +78,7 @@ public class ChoiceParameterDefinitionTest
   {
     ChoiceParameterDefinitionParameter parameter = choiceParameterBuilder.build();
     return new ChoiceParameterDefinition(parameter.getName(), parameter.getScript(),
-        parameter.getDescription(), parameter.getUuid(), parameter.isRemote(), StringUtils.EMPTY);
+        parameter.getDescription(), parameter.getUuid(), Boolean.valueOf(parameter.isRemote()), Boolean.FALSE, StringUtils.EMPTY);
   }
 
   /**
@@ -161,7 +161,7 @@ public class ChoiceParameterDefinitionTest
     assertTrue(paramValue instanceof StringParameterValue);
     assertEquals(value, ((StringParameterValue) paramValue).value);
   }
-  
+
   /**
    * Test for {@link ChoiceParameterDefinition#createValue(StaplerRequest)}.
    */

@@ -45,7 +45,7 @@ public class StringParameterDefinitionTest
   @Before
   public final void setUp()
   {
-    stringParameterDefinition = new StringParameterDefinition("test", SCRIPT, "desc", null, false,
+    stringParameterDefinition = new StringParameterDefinition("test", SCRIPT, "desc", null, Boolean.FALSE, Boolean.FALSE,
         StringUtils.EMPTY);
   }
 
@@ -78,7 +78,7 @@ public class StringParameterDefinitionTest
 
     assertNull(stringParameterDefinition.createValue(req));
   }
-  
+
   /** Test for {@link StringParameterDefinition#createValue(StaplerRequest)}. */
   @Test
   public final void testDefaultValue()

@@ -25,6 +25,7 @@ import java.io.IOException;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
+import org.jenkinsci.remoting.RoleChecker;
 import org.kohsuke.stapler.QueryParameter;
 
 import com.seitenbau.jenkins.plugins.dynamicparameter.config.DynamicParameterConfiguration;
@@ -163,7 +164,6 @@ public abstract class ScriptParameterDefinition extends BaseParameterDefinition
   private FilePath[] setupRemoteClassPaths(VirtualChannel channel) throws IOException,
       InterruptedException
   {
-    // TODO check if classpath is up-to-date and does not need a new copy
     String[] paths = getClassPathList();
     FilePath[] remoteClassPaths = new FilePath[paths.length];
     FilePath remoteBaseDirectory = new FilePath(channel, getRemoteClassPath());
@@ -273,5 +273,9 @@ public abstract class ScriptParameterDefinition extends BaseParameterDefinition
       return JenkinsUtils.execute(_remoteScript, _classPaths);
     }
 
+    @Override
+    public void checkRoles(RoleChecker role) {
+
+    }
   }
 }
