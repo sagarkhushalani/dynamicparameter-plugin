@@ -79,7 +79,7 @@ public class ChoiceParameterDefinitionTest
   {
     ChoiceParameterDefinitionParameter parameter = choiceParameterBuilder.build();
     return new ChoiceParameterDefinition(parameter.getName(), parameter.getScript(),
-        parameter.getDescription(), parameter.getUuid(), parameter.isRemote(), StringUtils.EMPTY);
+        parameter.getDescription(), parameter.getUuid(), Boolean.valueOf(parameter.isRemote()), Boolean.FALSE, StringUtils.EMPTY);
   }
 
   /**

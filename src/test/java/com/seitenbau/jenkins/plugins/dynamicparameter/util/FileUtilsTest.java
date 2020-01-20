@@ -19,8 +19,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,22 +30,22 @@ import com.seitenbau.jenkins.plugins.dynamicparameter.util.FileUtils;
  */
 public class FileUtilsTest
 {
- 
+
   char tmpSeparatorChar;
-    
+
   @Before
-  public void setup() 
+  public void setup()
   {
       tmpSeparatorChar = FileUtils.separatorChar;
       FileUtils.separatorChar = '\\';
   }
-  
+
   @After
   public void tearDown()
   {
       FileUtils.separatorChar = tmpSeparatorChar;
   }
-    
+
   /**
    * Test for {@link FileUtils#isWindows()}.
    */

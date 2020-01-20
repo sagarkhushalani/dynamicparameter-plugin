@@ -37,7 +37,6 @@ import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.StaplerRequest;
 
-import com.seitenbau.jenkins.plugins.dynamicparameter.scriptler.ScriptlerParameterDefinition;
 import com.seitenbau.jenkins.plugins.dynamicparameter.util.JenkinsUtils;
 
 /**
@@ -49,7 +48,7 @@ public abstract class BaseParameterDefinition extends SimpleParameterDefinition
   private static final long serialVersionUID = -4415132917610378545L;
 
   /** Logger. */
-  protected static final Logger logger = Logger.getLogger(ScriptlerParameterDefinition.class
+  protected static final Logger logger = Logger.getLogger(BaseParameterDefinition.class
       .getName());
 
   /** UUID identifying the current parameter. */

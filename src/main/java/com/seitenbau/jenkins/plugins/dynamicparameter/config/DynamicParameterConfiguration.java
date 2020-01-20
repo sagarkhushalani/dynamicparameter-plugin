@@ -22,7 +22,6 @@ import jenkins.model.Jenkins;
 
 import hudson.BulkChange;
 import hudson.XmlFile;
-import hudson.model.Hudson;
 import hudson.model.Saveable;
 
 /**
@@ -115,7 +114,6 @@ public enum DynamicParameterConfiguration
         }
         catch (IOException e)
         {
-          // TODO add logging
           e.printStackTrace();
         }
       }
@@ -131,7 +129,7 @@ public enum DynamicParameterConfiguration
 
     private static File getHomeDirectory()
     {
-      Hudson hudson = Hudson.getInstance();
+      Jenkins hudson = Jenkins.getInstanceOrNull();
       if (hudson == null)
       {
         return new File(HOME_DIR);

@@ -19,7 +19,6 @@ import groovy.lang.GroovyShell;
 import hudson.FilePath;
 import hudson.Plugin;
 import hudson.model.AbstractProject;
-import hudson.model.Hudson;
 import hudson.model.Label;
 import hudson.model.Node;
 import hudson.model.ParameterDefinition;
@@ -37,10 +36,10 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import jenkins.model.Jenkins;
+
 import org.apache.commons.lang.ObjectUtils;
 import org.codehaus.groovy.control.CompilerConfiguration;
-import org.jenkinsci.plugins.scriptler.config.Script;
-import org.jenkinsci.plugins.scriptler.config.ScriptlerConfiguration;
 
 import com.seitenbau.jenkins.plugins.dynamicparameter.BaseParameterDefinition;
 
@@ -133,40 +132,6 @@ public final class JenkinsUtils
   }
 
   /**
-   * Check if a plugin is available.
-   * @param shortName plugin short name
-   * @return {@code true} if plugin is installed
-   */
-  public static boolean isPluginAvailable(String shortName)
-  {
-    Plugin plugin = Hudson.getInstance().getPlugin(shortName);
-    if(plugin == null)
-    {
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * Check if the Scriptler plugin is available.
-   * @return {@code true} if Scriptler is installed
-   */
-  public static boolean isScriptlerAvailable()
-  {
-    return JenkinsUtils.isPluginAvailable("scriptler");
-  }
-
-  /**
-   * Get all Scriptler scripts.
-   * @return a set of Scriptler scripts
-   */
-  public static Set<Script> getAllScriptlerScripts()
-  {
-    Set<Script> scripts = ScriptlerConfiguration.getConfiguration().getScripts();
-    return scripts;
-  }
-
-  /**
    * Find an active node channel for the label of the current project.
    * @param label label whose nodes to check
    * @return active node channel or {@code null} if none found
@@ -192,22 +157,7 @@ public final class JenkinsUtils
   @SuppressWarnings("rawtypes")
   public static Label findProjectLabel(UUID parameterUUID)
   {
-	AbstractProject project = findCurrentProject(parameterUUID);
-    if (project != null)
-    {
-       return project.getAssignedLabel();
-    }
-    return null;
-  }
-
-  /**
-   * Find the current project.
-   * @return {@code null} if the current project cannot be found
-   */
-  @SuppressWarnings("rawtypes")
-  public static AbstractProject findCurrentProject(UUID parameterUUID)
-  {
-    Hudson instance = Hudson.getInstance();
+    Jenkins instance = Jenkins.getInstanceOrNull();
     if (instance != null)
     {
       List<AbstractProject> projects = instance.getAllItems(AbstractProject.class);
